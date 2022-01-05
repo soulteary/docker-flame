@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+  flame:
+    image: soulteary/flame:2.2.0
+    container_name: flame
+    volumes:
+      - ./data:/app/data
+      # 如果需要 Docker 集成，可选择开启
+      # - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 5005:5005
+    # 如果想使用 Docker Secrets，可选择开启
+    # secrets:
+    #   - password # optional but required for (1)
+    environment:
+      # 默认管理密码
+      - PASSWORD=flame_password
+      # 如果想使用 Docker Secrets，可选择开启
+      # - PASSWORD_FILE=/run/secrets/password # optional but required for (1)
+    restart: always
+
+# 如果想使用 Docker Secrets，可选择开启
+# secrets:
+#   password:
+#     file: /path/to/secrets/password
